@@ -46,9 +46,10 @@ RUN echo "${SPLUNK_SHA256SUM}  /tmp/downloads/${SPLUNK_FILENAME}" | sha256sum -c
     /tmp/downloads/${GLIBC_I18N_PACKAGE_FILENAME} \
   && chmod +x /entrypoint.sh \
   && chmod +x /setup.sh \
-  && /setup.sh \
   && rm -rf \
     /tmp/* \
     /var/cache/apk/*
+
+RUN /setup.sh
 
 ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
